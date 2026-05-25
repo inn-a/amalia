@@ -437,7 +437,7 @@ p:last-child { margin-bottom: 0; }
 }
 
 .rentry-img--geo {
-  transform: scale(0.82) translateX(-10%);
+  transform: scale(0.72) translate(-10%, -6%);
 }
 
 .rentry-sub {
