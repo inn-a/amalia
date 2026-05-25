@@ -436,9 +436,6 @@ p:last-child { margin-bottom: 0; }
   display: block;
 }
 
-.rentry-img--geo {
-  transform: scale(0.72) translate(-10%, -6%);
-}
 
 .rentry-sub {
   font-size: 0.68rem;
