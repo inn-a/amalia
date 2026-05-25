@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urban Migration Mapping – Elena Ferrante</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page-wrapper">
+
+<header>
+  <div class="header-top">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html" data-i18n="nav_about">About</a>
+      <a href="progetti.html" class="active" data-i18n="nav_projects">Projects</a>
+      <a href="publications.html" data-i18n="nav_publications">Publications</a>
+    </nav>
+    <div class="site-name">Elena Ferrante</div>
+    <div class="lang-switcher">
+      <button class="lang-btn" data-lang="it">IT</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+  </div>
+</header>
+
+<div class="page-title">
+  <h1>Urban Migration Mapping</h1>
+  <p>Geo-spatial project · 2022–2024</p>
+</div>
+
+<img
+  src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=700&q=80"
+  alt="World map"
+  class="project-hero-img"
+>
+
+<hr>
+
+<div class="section">
+  <p>This project combines administrative residence permit data with census records to produce high-resolution maps of migration flows across seven Northern European cities: Amsterdam, Antwerp, Brussels, Hamburg, Copenhagen, Stockholm and Oslo.</p>
+  <p>Using GeoPandas and QGIS, migration trajectories are disaggregated by country of origin, year of arrival and neighbourhood of settlement. The resulting dataset enables longitudinal comparison of spatial segregation patterns and their relationship to urban housing policy.</p>
+  <p>A key finding is the increasing concentration of recently arrived migrants in post-industrial peripheral zones, irrespective of city size — a pattern that cuts across national welfare regimes and challenges existing typologies of migrant integration.</p>
+</div>
+
+<hr>
+
+<div class="section">
+  <div class="code-block">
+    <div class="code-block-header">
+      <span class="dot dot--red"></span>
+      <span class="dot dot--yellow"></span>
+      <span class="dot dot--green"></span>
+      <span class="code-block-lang">Python · GeoPandas</span>
+    </div>
+    <pre>import geopandas as gpd
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load migration flow data and city geometries
+flows  = pd.read_csv('data/migration_flows_2010_2022.csv')
+cities = gpd.read_file('data/eu_cities_nuts3.geojson')
+
+# Merge on city identifier
+merged = cities.merge(flows, left_on='nuts_id', right_on='city_id')
+
+# Compute net migration rate per 1000 inhabitants
+merged['net_rate'] = (
+    (merged['arrivals'] - merged['departures']) / merged['population']
+) * 1000
+
+# Plot choropleth
+fig, ax = plt.subplots(1, 1, figsize=(14, 9))
+merged.plot(
+    column='net_rate',
+    cmap='RdYlBu',
+    legend=True,
+    legend_kwds={'label': 'Net migration per 1,000 inhabitants'},
+    ax=ax
+)
+ax.set_title('Net Migration Flows — Northern Europe, 2022', fontsize=14)
+ax.axis('off')
+plt.tight_layout()
+plt.savefig('output/migration_map_2022.png', dpi=300)
+</pre>
+  </div>
+</div>
+
+<footer>
+  <span>© 2025 Elena Ferrante</span>
+  <div class="footer-links">
+    <a href="#">Google Scholar</a>
+    <a href="#">LinkedIn</a>
+  </div>
+</footer>
+
+<script src="lang.js"></script>
+</div>
+</body>
+</html>

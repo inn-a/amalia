@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neighbourhood Change Index – Elena Ferrante</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page-wrapper">
+
+<header>
+  <div class="header-top">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html" data-i18n="nav_about">About</a>
+      <a href="progetti.html" class="active" data-i18n="nav_projects">Projects</a>
+      <a href="publications.html" data-i18n="nav_publications">Publications</a>
+    </nav>
+    <div class="site-name">Elena Ferrante</div>
+    <div class="lang-switcher">
+      <button class="lang-btn" data-lang="it">IT</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+  </div>
+</header>
+
+<div class="page-title">
+  <h1>Neighbourhood Change Index</h1>
+  <p>Geo-spatial project · 2023–ongoing</p>
+</div>
+
+<hr>
+
+<div class="section">
+  <p>The Neighbourhood Change Index (NCI) is a composite spatial indicator measuring multi-dimensional socioeconomic and demographic transformation at the sub-district level. The index is currently computed for Amsterdam and Antwerp using decennial census data (2011 and 2021).</p>
+  <p>Four dimensions are standardised and aggregated: median household income, share of foreign-born residents, rental housing proportion, and tertiary education attainment. Principal component analysis is used to weight each dimension according to its explanatory power.</p>
+  <p>Preliminary results show that gentrification and migrant concentration are increasingly co-occurring processes rather than mutually exclusive — with significant implications for housing policy and integration programmes.</p>
+</div>
+
+<hr>
+
+<div class="section">
+  <p class="code-label">Python · Scikit-learn · GeoPandas</p>
+  <div class="code-block">
+    <pre>import geopandas as gpd
+import numpy as np
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
+
+# Load census data for two time points
+df_2011 = gpd.read_file('data/census_amsterdam_2011.geojson')
+df_2021 = gpd.read_file('data/census_amsterdam_2021.geojson')
+
+indicators = [
+    'income_median',
+    'foreign_born_pct',
+    'rental_pct',
+    'edu_tertiary_pct'
+]
+
+# Compute absolute change between census waves
+delta = df_2021[indicators].values - df_2011[indicators].values
+
+# Standardise and reduce dimensions
+scaler = StandardScaler()
+delta_scaled = scaler.fit_transform(delta)
+
+pca = PCA(n_components=1)
+df_2021['NCI'] = pca.fit_transform(delta_scaled)
+
+print(f'Variance explained: {pca.explained_variance_ratio_[0]:.2%}')
+
+# Map the index
+df_2021.plot(
+    column='NCI',
+    cmap='coolwarm',
+    legend=True,
+    legend_kwds={'label': 'Neighbourhood Change Index'},
+)
+</pre>
+  </div>
+</div>
+
+<footer>
+  <span>© 2025 Elena Ferrante</span>
+  <div class="footer-links">
+    <a href="#">Google Scholar</a>
+    <a href="#">LinkedIn</a>
+  </div>
+</footer>
+
+<script src="lang.js"></script>
+</div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reddit Community Analysis – Elena Ferrante</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page-wrapper">
+
+<header>
+  <div class="header-top">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html" data-i18n="nav_about">About</a>
+      <a href="progetti.html" class="active" data-i18n="nav_projects">Projects</a>
+      <a href="publications.html" data-i18n="nav_publications">Publications</a>
+    </nav>
+    <div class="site-name">Elena Ferrante</div>
+    <div class="lang-switcher">
+      <button class="lang-btn" data-lang="it">IT</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+  </div>
+</header>
+
+<div class="page-title">
+  <h1>Reddit Community Analysis</h1>
+  <p>Social media project · 2024–ongoing</p>
+</div>
+
+<hr>
+
+<div class="section">
+  <p>This project applies computational methods to study how migration is discussed across European Reddit communities — including r/europe, r/belgium, r/italy, r/Netherlands and r/worldnews. The corpus comprises approximately 180,000 posts and 1.4 million comments spanning 2018 to 2024.</p>
+  <p>Structural topic modelling (STM) is used to identify latent themes and their variation across subreddits and time. Network analysis of comment threads reveals the community structures through which certain framings of migration gain or lose traction. The project pays particular attention to the interplay between anonymous discourse and civic identity formation.</p>
+  <p>An unexpected finding is the prominence of bureaucratic frustration — visa delays, permit renewals, administrative errors — as a recurring topic even in communities ostensibly focused on political debate, suggesting that migration is experienced online primarily as a practical and legal predicament.</p>
+</div>
+
+<hr>
+
+<div class="section">
+  <p class="code-label">Python · PRAW · STM</p>
+  <div class="code-block">
+    <pre>import praw
+import pandas as pd
+from datetime import datetime
+
+reddit = praw.Reddit(
+    client_id=CLIENT_ID,
+    client_secret=CLIENT_SECRET,
+    user_agent='migration_study/1.0 (academic research)'
+)
+
+subreddits = ['europe', 'belgium', 'italy', 'Netherlands', 'worldnews']
+keywords   = ['migration', 'migrants', 'refugees', 'asylum', 'border']
+posts = []
+
+for sub in subreddits:
+    for kw in keywords:
+        for post in reddit.subreddit(sub).search(kw, limit=200, sort='top'):
+            posts.append({
+                'subreddit':    sub,
+                'keyword':      kw,
+                'title':        post.title,
+                'selftext':     post.selftext,
+                'score':        post.score,
+                'num_comments': post.num_comments,
+                'created':      datetime.utcfromtimestamp(post.created_utc),
+            })
+
+df = pd.DataFrame(posts).drop_duplicates(subset='title')
+
+# Summary by subreddit
+print(df.groupby('subreddit').agg(
+    posts=('title', 'count'),
+    avg_score=('score', 'mean'),
+    avg_comments=('num_comments', 'mean')
+).round(1))
+</pre>
+  </div>
+</div>
+
+<footer>
+  <span>© 2025 Elena Ferrante</span>
+  <div class="footer-links">
+    <a href="#">Google Scholar</a>
+    <a href="#">LinkedIn</a>
+  </div>
+</footer>
+
+<script src="lang.js"></script>
+</div>
+</body>
+</html>
