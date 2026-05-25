@@ -454,9 +454,9 @@ p:last-child { margin-bottom: 0; }
 }
 
 .rentry-desc {
-  font-size: 0.95rem;
+  font-size: 0.78rem;
   color: #333;
-  line-height: 1.8;
+  line-height: 1.9;
   text-align: justify;
   margin-bottom: 0.5rem;
 }
