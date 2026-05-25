@@ -428,8 +428,8 @@ p:last-child { margin-bottom: 0; }
 }
 
 .rentry-img {
-  width: 100%;
-  aspect-ratio: 1;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   object-fit: contain;
   background: #f4f2ee;
