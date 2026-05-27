@@ -94,7 +94,7 @@
 
   <div class="rentry">
     <div class="rentry-img-wrap">
-      <img class="rentry-img rentry-img--geo" src="../vis_2.gif" alt="World map" id="geo-thumb">
+      <img class="rentry-img rentry-img--geo" src="" data-gif="../vis_2.gif" alt="World map" id="geo-thumb">
       <p class="rentry-img-caption" data-i18n="geo_caption">Cliccaci per vedere meglio l'animazione grafica realizzata in R</p>
     </div>
     <div class="rentry-body">
@@ -142,7 +142,14 @@
   const lightbox = document.getElementById('geo-lightbox');
   const closeBtn = document.getElementById('lightbox-close');
 
-  thumb.addEventListener('click', () => lightbox.classList.add('open'));
+  const lightboxImg = lightbox.querySelector('img');
+
+  thumb.addEventListener('click', () => {
+    if (!lightboxImg.src || lightboxImg.src === window.location.href) {
+      lightboxImg.src = thumb.dataset.gif;
+    }
+    lightbox.classList.add('open');
+  });
   closeBtn.addEventListener('click', () => lightbox.classList.remove('open'));
   lightbox.addEventListener('click', e => {
     if (e.target === lightbox) lightbox.classList.remove('open');
