@@ -434,7 +434,7 @@ p:last-child { margin-bottom: 0; }
   object-fit: cover;
   background: #f4f2ee;
   display: block;
-  border: 3px solid #c47a54;
+  border: 1.5px solid #c47a54;
 }
 
 
@@ -522,7 +522,7 @@ footer a:hover { color: #111; text-decoration: none; }
     border-radius: 50%;
     object-fit: cover;
     background: #f4f2ee;
-    border: 3px solid #c47a54;
+    border: 1.5px solid #c47a54;
   }
   .rentry-body { width: 100%; }
   .rentry-title { font-size: 1.35rem; margin-bottom: 0.5rem; }
