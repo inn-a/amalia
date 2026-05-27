@@ -434,7 +434,25 @@ p:last-child { margin-bottom: 0; }
   object-fit: cover;
   background: #f4f2ee;
   display: block;
+}
+
+.rentry-img--geo {
   box-shadow: 0 0 0 1.5px #111;
+}
+
+.rentry-img-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.rentry-img-caption {
+  font-size: 0.68rem;
+  color: #888;
+  text-align: center;
+  font-style: italic;
+  margin: 0;
 }
 
 
@@ -522,7 +540,6 @@ footer a:hover { color: #111; text-decoration: none; }
     border-radius: 50%;
     object-fit: cover;
     background: #f4f2ee;
-    box-shadow: 0 0 0 1.5px #111;
   }
   .rentry-body { width: 100%; }
   .rentry-title { font-size: 1.35rem; margin-bottom: 0.5rem; }
