@@ -43,7 +43,7 @@ const T = {
     map_title: 'Geographic Mapping of Displacement - Python &amp; Natural Earth',
     map_p1: 'This map was developed as an integral part of a research publication, contributing to the visual documentation of forced displacement and refugee camps in the Horn of Africa and beyond.',
     map_p2: '<strong>Methodology:</strong> Locations mentioned in the source document were converted into geographic coordinates using Google Maps, including a detailed identification of individual camp names within broader regional references such as "Afar camps" or "Tigray camps." The coordinates were compiled in an Excel file to ensure transparency and reproducibility. The map was built in Python using the Mercator projection and open-source geographic boundary data from Natural Earth, which represents borders according to de facto rather than de jure status. The visualisation includes both a world map and a zoomed view focused on the Horn of Africa. The modular structure of the code allows for rapid updates: adding new locations, adjusting colours, or switching the base map style requires minimal effort.',
-    geo_caption: 'Click to view the R animation up close',
+    geo_caption: 'Click on the image to view the R animation up close',
     geo_title: 'Missing and dead migrants around the globe',
     geo_sub: 'Data Visualisation and Analytics in R course — Vrije Universiteit Amsterdam, Master\'s Degree in Social and Cultural Anthropology',
     geo_p1: 'This project analyses global data on migrants who have died or gone missing as a result of border regimes, with a focus on identifying the most critical geographical areas and migration routes.',
