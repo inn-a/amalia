@@ -14,7 +14,7 @@ const T = {
     map_title: 'Mappatura Geografica degli Spostamenti - Python &amp; Natural Earth',
     map_p1: 'Questa mappa è stata realizzata come parte integrante di una pubblicazione di ricerca, contribuendo alla documentazione visiva dello sfollamento forzato e dei campi profughi nel Corno d\'Africa e oltre.',
     map_p2: '<strong>Metodologia:</strong> I luoghi menzionati nel documento sono stati convertiti in coordinate geografiche tramite Google Maps, inclusa un\'identificazione dettagliata dei singoli campi all\'interno di riferimenti regionali più ampi come "campi dell\'Afar" o "campi del Tigray." Le coordinate sono state raccolte in un file Excel per garantire trasparenza e riproducibilità. La mappa è stata costruita in Python utilizzando la proiezione di Mercatore e i dati geografici open source di Natural Earth, che rappresenta i confini secondo lo status de facto piuttosto che de jure. La visualizzazione include sia una mappa mondiale che uno zoom specifico sul Corno d\'Africa. La struttura modulare del codice consente aggiornamenti rapidi: aggiungere nuovi luoghi, modificare colori o cambiare la tipologia di mappa richiede un intervento minimo.',
-    geo_caption: 'Cliccaci per vedere meglio l\'animazione grafica realizzata in R',
+    geo_caption: 'Clicca sull\'immagine per vedere meglio l\'animazione grafica realizzata in R',
     geo_title: 'Migranti dispersi e morti nel mondo',
     geo_sub: 'Data Visualisation and Analytics in R — Vrije Universiteit Amsterdam, Master in Antropologia sociale e culturale',
     geo_p1: 'Questo progetto analizza dati globali sui migranti morti o dispersi a causa dei regimi di frontiera, con l\'obiettivo di identificare le aree geografiche e le rotte migratorie più critiche.',
