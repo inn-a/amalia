@@ -108,6 +108,7 @@ nav a.active { color: #111; text-decoration: underline; text-underline-offset: 4
 }
 
 .section--hero p:last-child { margin-bottom: 0; }
+.section--hero p:empty { display: none; }
 
 .page-title h1 {
   font-family: 'EB Garamond', Georgia, serif;
