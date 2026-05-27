@@ -93,7 +93,10 @@
 <div class="section">
 
   <div class="rentry">
-    <img class="rentry-img" src="../map_horn.jpg" alt="Geographic map">
+    <div class="rentry-img-wrap">
+      <img class="rentry-img rentry-img--map" src="../map_horn.jpg" alt="Geographic map" id="map-thumb">
+      <p class="rentry-img-caption" data-i18n="map_caption">Clicca per vedere maggiori dettagli</p>
+    </div>
     <div class="rentry-body">
       <h3 class="rentry-title" data-i18n="map_title">Geographic Mapping of Displacement - Python &amp; Natural Earth</h3>
       <p class="rentry-desc" data-i18n="map_p1">This map was developed as an integral part of a research publication, contributing to the visual documentation of forced displacement and refugee camps in the Horn of Africa and beyond.</p>
@@ -132,11 +135,19 @@
 
 </div>
 
-<!-- Lightbox -->
+<!-- Lightbox GIF -->
 <div class="lightbox" id="geo-lightbox">
   <div class="lightbox-frame">
     <button class="lightbox-close" id="lightbox-close">×</button>
-    <img src="../vis_2.gif" alt="World map full view">
+    <img src="" alt="World map full view">
+  </div>
+</div>
+
+<!-- Lightbox Map -->
+<div class="lightbox" id="map-lightbox">
+  <div class="lightbox-frame">
+    <button class="lightbox-close" id="map-lightbox-close">×</button>
+    <img src="../map_horn.jpg" alt="Geographic map full view">
   </div>
 </div>
 
@@ -149,24 +160,29 @@
 
 <script src="../lang.js"></script>
 <script>
-  const thumb   = document.getElementById('geo-thumb');
-  const lightbox = document.getElementById('geo-lightbox');
-  const closeBtn = document.getElementById('lightbox-close');
-
-  const lightboxImg = lightbox.querySelector('img');
-
-  thumb.addEventListener('click', () => {
-    if (!lightboxImg.src || lightboxImg.src === window.location.href) {
-      lightboxImg.src = thumb.dataset.gif;
-    }
-    lightbox.classList.add('open');
+  // GIF lightbox
+  const geoThumb   = document.getElementById('geo-thumb');
+  const geoLightbox = document.getElementById('geo-lightbox');
+  const geoImg = geoLightbox.querySelector('img');
+  geoThumb.addEventListener('click', () => {
+    if (!geoImg.src || geoImg.src === window.location.href) geoImg.src = geoThumb.dataset.gif;
+    geoLightbox.classList.add('open');
   });
-  closeBtn.addEventListener('click', () => lightbox.classList.remove('open'));
-  lightbox.addEventListener('click', e => {
-    if (e.target === lightbox) lightbox.classList.remove('open');
-  });
+  document.getElementById('lightbox-close').addEventListener('click', () => geoLightbox.classList.remove('open'));
+  geoLightbox.addEventListener('click', e => { if (e.target === geoLightbox) geoLightbox.classList.remove('open'); });
+
+  // Map lightbox
+  const mapThumb   = document.getElementById('map-thumb');
+  const mapLightbox = document.getElementById('map-lightbox');
+  mapThumb.addEventListener('click', () => mapLightbox.classList.add('open'));
+  document.getElementById('map-lightbox-close').addEventListener('click', () => mapLightbox.classList.remove('open'));
+  mapLightbox.addEventListener('click', e => { if (e.target === mapLightbox) mapLightbox.classList.remove('open'); });
+
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') lightbox.classList.remove('open');
+    if (e.key === 'Escape') {
+      geoLightbox.classList.remove('open');
+      mapLightbox.classList.remove('open');
+    }
   });
 </script>
 </div>
